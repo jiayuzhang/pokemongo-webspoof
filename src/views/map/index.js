@@ -34,11 +34,17 @@ class Map extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this.handleGeolocationSuccess,
-        (error) => console.warn(error),
+        (error) => {
+          console.warn(error)
+          console.warn("Fallback to center of the United States")
+          this.handleGeolocationSuccess({coords:{latitude: 37.09024, longitude: -95.712891}})
+        },
         { enableHighAccuracy: true, maximumAge: 0 }
       )
     }
   }
+
+
 
   @action handleGeolocationSuccess({ coords: { latitude, longitude } }) {
     userLocation.replace([ latitude, longitude ])
@@ -71,6 +77,17 @@ class Map extends Component {
     new KmlLayer({ url, map })
 
     userLocation.replace(lastLocation)
+
+    // hookup underlying event
+    let tmout;
+    map.addListener("click", function(e) {
+      tmout = setTimeout(function() {
+        userLocation.replace([e.latLng.lat(), e.latLng.lng()]);
+      }, 300);
+    });
+    map.addListener("dblclick", function() {
+      tmout && clearTimeout(tmout);
+    });
   })
 
   @action toggleMapDrag = () => {

@@ -1,6 +1,7 @@
-import { capitalize } from 'lodash'
+import { capitalize, head } from 'lodash'
 
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { action, observable, computed } from 'mobx'
 import { observer } from 'mobx-react'
 import places from 'places.js'
@@ -32,19 +33,28 @@ class Autopilot extends Component {
 
   componentDidMount() {
     // initialize algolia places input
-    const { placesEl } = this.refs
-    this.placesAutocomplete = places({ container: placesEl })
-    this.placesAutocomplete.on('change', this.handleSuggestionChange)
+    // const { placesEl } = this.refs
+    // this.placesAutocomplete = places({ container: placesEl })
+    // this.placesAutocomplete.on('change', this.handleSuggestionChange)
+
+    this.searchInputDOM = ReactDOM.findDOMNode(this.refs.placesEl)
+    this.searchBox = new google.maps.places.SearchBox(this.searchInputDOM)
+    this.searchBox.addListener('places_changed', function() {
+      let place = head(this.searchBox.getPlaces())
+      if (!place) return;
+      let ll = place.geometry.location
+      this.handleSuggestionChange({suggestion:{latlng:{lat:ll.lat(),lng:ll.lng()}}})
+    }.bind(this))
   }
 
   @action handleSuggestionChange = ({ suggestion: { latlng: { lat, lng } } }) =>
     autopilot.scheduleTrip(lat, lng)
       .then(() => { if (!this.isModalOpen) this.isModalOpen = true })
-      .catch(() => this.placesAutocomplete.setVal(null))
+      .catch(() => this.searchInputDOM.value = '')
 
   @action handleStartAutopilot = () => {
     // reset modal state
-    this.placesAutocomplete.setVal(null)
+    this.searchInputDOM.value = ''
 
     // TODO: Refactor it's ugly
     // update `autopilot` data

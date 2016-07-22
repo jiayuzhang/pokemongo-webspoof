@@ -9,6 +9,10 @@
     &.hide {
       display: none;
     }
+
+    input {
+      width: inherit;
+    }
   }
 
   &-btn {

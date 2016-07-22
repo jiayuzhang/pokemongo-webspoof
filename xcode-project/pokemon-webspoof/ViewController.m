@@ -7,16 +7,27 @@
 //
 
 #import "ViewController.h"
+#import "AVFoundation/AVFoundation.h"
+#import "AudioToolbox/AudioToolbox.h"
 
 @interface ViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    AVAudioPlayer *_silenceBgPlayer;   // strong reference
+}
 
 - (void)viewDidLoad {
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"silence" ofType:@"mp3"]];
+    _silenceBgPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    _silenceBgPlayer.numberOfLoops = -1;
+    [_silenceBgPlayer play];
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {

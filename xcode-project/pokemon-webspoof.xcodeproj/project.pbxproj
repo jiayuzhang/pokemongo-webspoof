@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		457D68291D407563007F87E1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457D68281D407563007F87E1 /* AVFoundation.framework */; };
+		457D682B1D407567007F87E1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 457D682A1D407567007F87E1 /* AudioToolbox.framework */; };
+		45BEB5361D4076A400525758 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45BEB5351D4076A400525758 /* silence.mp3 */; };
 		46119DD71D397DE2005433C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46119DD61D397DE2005433C8 /* main.m */; };
 		46119DDA1D397DE2005433C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46119DD91D397DE2005433C8 /* AppDelegate.m */; };
 		46119DDD1D397DE2005433C8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46119DDC1D397DE2005433C8 /* ViewController.m */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		457D68281D407563007F87E1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		457D682A1D407567007F87E1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		45BEB5351D4076A400525758 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		46119DD21D397DE2005433C8 /* pokemon-webspoof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pokemon-webspoof.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46119DD61D397DE2005433C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		46119DD81D397DE2005433C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -35,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457D682B1D407567007F87E1 /* AudioToolbox.framework in Frameworks */,
+				457D68291D407563007F87E1 /* AVFoundation.framework in Frameworks */,
 				46119DED1D397E7E005433C8 /* pokemonLocation.gpx in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +53,9 @@
 		46119DC91D397DE2005433C8 = {
 			isa = PBXGroup;
 			children = (
+				45BEB5351D4076A400525758 /* silence.mp3 */,
+				457D682A1D407567007F87E1 /* AudioToolbox.framework */,
+				457D68281D407563007F87E1 /* AVFoundation.framework */,
 				46119DEC1D397E7E005433C8 /* pokemonLocation.gpx */,
 				46119DD41D397DE2005433C8 /* pokemon-webspoof */,
 				46119DD31D397DE2005433C8 /* Products */,
@@ -145,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45BEB5361D4076A400525758 /* silence.mp3 in Resources */,
 				46119DE51D397DE2005433C8 /* LaunchScreen.storyboard in Resources */,
 				46119DE21D397DE2005433C8 /* Assets.xcassets in Resources */,
 				46119DE01D397DE2005433C8 /* Main.storyboard in Resources */,
@@ -275,6 +287,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "pokemon-webspoof/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iam4x.pokemon-webspoof";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,6 +299,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "pokemon-webspoof/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iam4x.pokemon-webspoof";
 				PRODUCT_NAME = "$(TARGET_NAME)";
